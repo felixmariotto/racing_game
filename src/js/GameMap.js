@@ -18,7 +18,13 @@ import Scene from './core/Scene.js';
 
 const TILE_WIDTH = 1;
 
-const material = new THREE.MeshNormalMaterial();
+const material = new THREE.MeshLambertMaterial();
+
+new THREE.TextureLoader().load( 'https://f-zero-racing.s3.eu-west-3.amazonaws.com/images/uv_grid_opengl.jpg', (texture) => {
+
+	material.map = texture;
+
+});
 
 //
 
