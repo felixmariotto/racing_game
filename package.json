@@ -2,6 +2,9 @@
   "name": "VR-APP-TEMPLATE",
   "version": "1.0.0",
   "description": "Template for three.js VR app",
+  "engine": {
+    "node": "12.x.x"
+  },
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
