@@ -1,6 +1,5 @@
 
 import * as THREE from 'three';
-import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
 
 import Scene from './Scene.js';
 import Camera from './Camera.js';
@@ -13,9 +12,6 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 
 renderer.outputEncoding = THREE.sRGBEncoding;
 
-renderer.xr.enabled = true;
-
-document.body.appendChild( VRButton.createButton(renderer) );
 document.body.appendChild( renderer.domElement );
 
 //

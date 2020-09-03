@@ -2,13 +2,9 @@
 import Renderer from './Renderer.js';
 import Camera from './Camera.js';
 
-import Raycasting from '../Raycasting.js';
-
 //
 
 function loop() {
-
-	Raycasting.update();
 
 	Camera.update();
 
