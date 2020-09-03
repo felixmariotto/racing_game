@@ -1,5 +1,10 @@
 const express = require('express');
 const path = require('path');
+const socketIO = require('socket.io');
+
+const gameControl = require('./modules/GameControl.js');
+
+// EXPRESS
 
 const PORT = process.env.PORT || 8080;
 
@@ -18,3 +23,29 @@ const app = express()
 		console.log( 'App listening on port ' + PORT );
 
 	})
+
+// SOCKET.IO
+
+const io = socketIO( app );
+
+io.on( 'connection', (client) => {
+
+	console.log( `User ${ client.id } connected.` );
+
+	client.on( 'subscribe-next-game', () => {
+
+		gameControl.subscribeToNextGame( client );
+
+	})
+
+})
+
+// GAME
+
+gameControl.startGame();
+
+setInterval( () => {
+
+	gameControl.startGame();
+
+}, 10000 );
