@@ -1,7 +1,11 @@
 
+import GameMap from './GameMap.js';
+
+//
+
 function startGame( params ) {
 
-	console.log('start game with params : ', params);
+	GameMap.createMap( params )
 
 }
 
