@@ -1,8 +1,5 @@
 
-module.exports = {
-	getRegisteredClients,
-	subscribeToNextGame
-}
+const buidMap = require('./buildMap.js');
 
 //
 
@@ -10,13 +7,13 @@ let waitingClients = [];
 
 //
 
-function getRegisteredClients() {
+function startGame() {
 
 	const clients = waitingClients.slice( 0 );
 
 	waitingClients = [];
 
-	return clients
+	return [ clients, buidMap() ]
 
 }
 
@@ -26,4 +23,11 @@ function subscribeToNextGame( client ) {
 
 	waitingClients.push( client );
 
+}
+
+//
+
+module.exports = {
+	startGame,
+	subscribeToNextGame
 }

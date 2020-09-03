@@ -40,22 +40,51 @@ io.on( 'connection', (client) => {
 
 })
 
-function notifyGameStarted( clients ) {
+function notifyGameStarted( clients, params ) {
 
 	clients.forEach( (client) => {
 
-		client.emit( 'game-started' );
+		client.emit( 'game-started', params );
 
 	})
 
 }
 
+function sendTimeBeforeGame( secBeforeGame ) {
+
+	io.emit( 'time-before-game', secBeforeGame );
+
+}
+
 // GAME
 
-notifyGameStarted( gameControl.getRegisteredClients() );
+function startGame() {
+
+	const [ clients, params ] = gameControl.startGame();
+
+	notifyGameStarted( clients, params );
+
+}
+
+const SEC_BEFORE_START = 3;
+let startCounter = 0;
+
+startGame();
 
 setInterval( () => {
 
-	notifyGameStarted( gameControl.getRegisteredClients() );
+	startCounter ++
+
+	if ( startCounter >= SEC_BEFORE_START ) {
+
+		startGame();
+
+		startCounter = 0;
+
+	} else {
+
+		sendTimeBeforeGame( SEC_BEFORE_START - startCounter )
+		
+	}
 
 }, 1000 );

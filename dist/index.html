@@ -2,6 +2,48 @@
         margin: 0;
         padding: 0;
       }
+
       body {
         overflow: hidden;
-      }</style></head><body><script src="bundle.js"></script></body></html>
+      }
+
+      /* HOME SCREEN */
+
+      #homescreen {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        background-color: #404040;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+        #homescreen>h1 {
+          margin-bottom: 50px;
+          color: white
+        }
+
+        #homescreen-menu {
+          background-color: white;
+          height: 300px;
+          width: 300px;
+          border-radius: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          flex-direction: column;
+        }
+
+          #start-btn {
+            padding: 10px 20px;
+            border-radius: 7px;
+            cursor: pointer;
+            background-color: grey;
+          }
+
+            #start-btn:hover {
+              background-color: #b0faff;
+            }</style></head><body><div id="homescreen"><h1>Racing Game</h1><div id="homescreen-menu"><div id="start-btn">Start a game</div><div id="feedback-box"></div></div><div><script src="bundle.js"></script></div></div></body></html>
