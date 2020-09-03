@@ -6,6 +6,7 @@ import SocketIO from './SocketIO.js';
 const domHomescreen = document.querySelector('#homescreen');
 const domStartButton = document.querySelector('#start-btn');
 const domFeedback = document.querySelector('#feedback-box');
+const domTimeLeft = document.querySelector('#time-left');
 
 //
 
@@ -32,6 +33,15 @@ function hideHomeScreen() {
 
 //
 
+function printTimeLeft( secBeforeGame ) {
+
+	domTimeLeft.innerHTML = `Time before new game : ${ secBeforeGame } seconds`;
+
+}
+
+//
+
 export default {
-	hideHomeScreen
+	hideHomeScreen,
+	printTimeLeft
 }
