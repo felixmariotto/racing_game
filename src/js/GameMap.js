@@ -18,9 +18,26 @@ import Scene from './core/Scene.js';
 
 const TILE_WIDTH = 1;
 
+const TILE_UVS = [
+
+	// ref: 0, 1, 1, 1, 0, 0, 1, 0
+
+	// 0 : empty tile
+	[ 0, 0.5, 0.5, 0.5, 0, 0, 0.5, 0 ],
+
+	// 1 : boost tile
+	[ 0.5, 0.5, 1.0, 0.5, 0.5, 0, 1.0, 0 ],
+
+	// 2 : obstacle tile
+	[ 0, 1.0, 0.5, 1.0, 0, 0.5, 0.5, 0.5 ]
+
+]
+
 const material = new THREE.MeshLambertMaterial();
 
-new THREE.TextureLoader().load( 'https://f-zero-racing.s3.eu-west-3.amazonaws.com/images/uv_grid_opengl.jpg', (texture) => {
+const UV_GRID = 'https://f-zero-racing.s3.eu-west-3.amazonaws.com/images/uv_grid_opengl.jpg';
+
+new THREE.TextureLoader().load( UV_GRID, (texture) => {
 
 	material.map = texture;
 
@@ -42,6 +59,14 @@ function createMap( params ) {
 				0,
 				TILE_WIDTH * tileIDX
 			);
+
+			const uv = tileGeom.attributes.uv.array;
+
+			for ( let i=0 ; i<uv.length ; i++ ) {
+
+				uv[ i ] = TILE_UVS[ tile ][ i ];
+
+			};
 
 			return tileGeom
 
