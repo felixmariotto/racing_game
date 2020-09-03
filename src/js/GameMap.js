@@ -35,9 +35,10 @@ const TILE_UVS = [
 
 const material = new THREE.MeshLambertMaterial();
 
+const TILE_SET = 'https://f-zero-racing.s3.eu-west-3.amazonaws.com/images/tile_set.png';
 const UV_GRID = 'https://f-zero-racing.s3.eu-west-3.amazonaws.com/images/uv_grid_opengl.jpg';
 
-new THREE.TextureLoader().load( UV_GRID, (texture) => {
+new THREE.TextureLoader().load( TILE_SET, (texture) => {
 
 	material.map = texture;
 
