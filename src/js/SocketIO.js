@@ -14,6 +14,12 @@ socket.on( 'ping', () => {
 
 })
 
+socket.on( 'game-started', () => {
+
+	console.log('game started')
+
+})
+
 //
 
 socket.emit( 'subscribe-next-game' );

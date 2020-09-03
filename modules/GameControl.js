@@ -1,6 +1,6 @@
 
 module.exports = {
-	startGame,
+	getRegisteredClients,
 	subscribeToNextGame
 }
 
@@ -10,15 +10,13 @@ let waitingClients = [];
 
 //
 
-function startGame() {
+function getRegisteredClients() {
 
-	waitingClients.forEach( (client) => {
-
-		console.log( client.id + ' start a game' )
-
-	});
+	const clients = waitingClients.slice( 0 );
 
 	waitingClients = [];
+
+	return clients
 
 }
 

@@ -40,12 +40,22 @@ io.on( 'connection', (client) => {
 
 })
 
+function notifyGameStarted( clients ) {
+
+	clients.forEach( (client) => {
+
+		client.emit( 'game-started' );
+
+	})
+
+}
+
 // GAME
 
-gameControl.startGame();
+notifyGameStarted( gameControl.getRegisteredClients() );
 
 setInterval( () => {
 
-	gameControl.startGame();
+	notifyGameStarted( gameControl.getRegisteredClients() );
 
-}, 10000 );
+}, 1000 );
