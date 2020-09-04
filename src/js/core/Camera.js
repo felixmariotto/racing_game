@@ -3,7 +3,6 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import Renderer from './Renderer.js';
 import defaults from '../../data/defaults.js';
-import config from '../../data/config.js';
 
 //
 
@@ -22,7 +21,7 @@ camera.lookAt( defaults.cameraInitTarget );
 
 let controls;
 
-if ( config.useControls ) {
+if ( defaults.useControls ) {
 
 	controls = new OrbitControls(
 		camera,
@@ -51,7 +50,7 @@ function updateAspect() {
 
 function update() {
 
-	if ( config.useControls ) {
+	if ( defaults.useControls ) {
 
 		controls.update();
 

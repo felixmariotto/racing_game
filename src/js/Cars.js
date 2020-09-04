@@ -3,10 +3,6 @@ import * as THREE from 'three';
 
 import Scene from './core/Scene.js';
 
-// game constants
-
-const TRACK_WIDTH = 5;
-
 //
 
 let cars = {};
@@ -53,9 +49,9 @@ function update( stepInfo ) {
 function positionCar( id, newPos ) {
 
 	cars[ id ].mesh.position.set(
-		newPos.x * TRACK_WIDTH,
-		newPos.y * TRACK_WIDTH,
-		newPos.z * TRACK_WIDTH
+		newPos.x,
+		newPos.y,
+		newPos.z
 	);
 
 }
