@@ -17,6 +17,12 @@ socket.on( 'time-before-game', ( secBeforeGame ) => {
 
 });
 
+socket.on( 'step-info', ( stepInfo ) => {
+
+	console.log( 'stepInfo : ', stepInfo );
+
+});
+
 //
 
 function subscribeNextGame() {

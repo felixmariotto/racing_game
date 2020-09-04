@@ -40,6 +40,8 @@ io.on( 'connection', (client) => {
 
 })
 
+gameControl.takeSocketInScope( io );
+
 function notifyGameStarted( clients, params ) {
 
 	clients.forEach( (client) => {
