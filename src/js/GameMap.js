@@ -84,8 +84,6 @@ function createMap( params ) {
 		material
 	)
 
-	mesh.position.z -= TILE_WIDTH * 2;
-
 	Scene.add( mesh )
 
 }

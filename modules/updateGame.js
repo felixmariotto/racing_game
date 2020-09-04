@@ -5,11 +5,11 @@ module.exports = function updateGame( game, speedRatio ) {
 
 		// test : make every player move forward
 
-		if ( game.departureTime > Date.now() ) {
+		if ( Date.now() > game.departureTime ) {
 
 			game.players.forEach( (player) => {
 
-				player.position.x += 0.01 * speedRatio;
+				player.position.x += 0.005 * speedRatio;
 
 			})
 

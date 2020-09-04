@@ -6,6 +6,6 @@ export default {
 	cameraFOV: 90,
 	cameraMinPlane: 0.04,
 	cameraFarPlane: 100,
-	cameraInitPos: new THREE.Vector3( 0, 1, 5 ),
-	cameraInitTarget: new THREE.Vector3( 0, 0, 0 )
+	cameraInitPos: new THREE.Vector3( 0, 1, 8 ),
+	cameraInitTarget: new THREE.Vector3( 0, 0, 2.5 )
 }

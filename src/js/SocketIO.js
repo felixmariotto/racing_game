@@ -19,7 +19,7 @@ socket.on( 'time-before-game', ( secBeforeGame ) => {
 
 socket.on( 'step-info', ( stepInfo ) => {
 
-	console.log( 'stepInfo : ', stepInfo );
+	GameControl.updateGame( stepInfo, socket.id );
 
 });
 
@@ -35,7 +35,7 @@ function subscribeNextGame() {
 
 			UI.hideHomeScreen();
 
-			GameControl.startGame( params );
+			GameControl.startGame( params, socket.id );
 
 			resolve();
 

@@ -10,7 +10,6 @@ import GameControl from './js/GameControl.js';
 import SocketIO from './js/SocketIO.js';
 import Light from './js/Light.js';
 import Loop from './js/core/Loop.js';
-import SceneDecoration from './js/SceneDecoration.js';
 
 //
 

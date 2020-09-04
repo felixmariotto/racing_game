@@ -73,7 +73,7 @@ function startGame() {
 
 		players.push({
 			isNPC: false,
-			gameID: i,
+			id: i,
 			client: client.id
 		});
 
@@ -90,7 +90,7 @@ function startGame() {
 
 		players.push({
 			isNPC: true,
-			gameID: players.length
+			id: players.length
 		})
 
 	}
@@ -105,7 +105,7 @@ function startGame() {
 	players.forEach( (player, i) => {
 
 		player.position = {
-			x: i / 10,
+			x: i / 5,
 			y: 0,
 			z: ( ( i % 2 ) * 0.5 ) + 0.25
 		}

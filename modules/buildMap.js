@@ -12,7 +12,7 @@ CODE FOR TILES :
 //
 
 const TRACK_LENGTH = 100;
-const MINIMAL_EMPTY_SPACE = 5;
+const MINIMAL_EMPTY_SPACE = 12;
 
 //
 
