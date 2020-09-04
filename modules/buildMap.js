@@ -77,6 +77,6 @@ module.exports = function buildMap() {
 
 	}
 
-	return { track }
+	return track
 
 }
