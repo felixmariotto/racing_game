@@ -1,14 +1,7 @@
 
 const buildMap = require('./buildMap.js');
 const updateGame = require('./updateGame.js');
-
-// game params
-
-const PLAYERS_NUMBER = 6;
-
-const LAPS_BEFORE_DEPARTURE = 2000; // in ms
-
-const GAME_LOOP_FPS = 120;
+const params = require('./params.js');
 
 //
 
@@ -36,11 +29,11 @@ setInterval( () => {
 
 	previousTime = currentTime;
 
-	const speedRatio = delta / ( ( 1 / GAME_LOOP_FPS ) * 1000 );
+	const speedRatio = delta / ( ( 1 / params.GAME_LOOP_FPS ) * 1000 );
 
 	gameLoop( speedRatio )
 
-}, ( 1 / GAME_LOOP_FPS ) * 1000 );
+}, ( 1 / params.GAME_LOOP_FPS ) * 1000 );
 
 function gameLoop( speedRatio ) {
 
@@ -84,7 +77,7 @@ function startGame() {
 
 	// add NPCs to reach the fixed number of players
 
-	const npcsNeeded = PLAYERS_NUMBER - players.length;
+	const npcsNeeded = params.PLAYERS_NUMBER - players.length;
 
 	for ( let i=0 ; i<npcsNeeded ; i++ ) {
 
@@ -99,15 +92,14 @@ function startGame() {
 	position each player including NPCs.
 	positions are 3D vectors [ x, y, z ].
 	y is up.
-	positions are normalised ( even if the road is 5 of width, it will be normalied to 1 )
 	*/
 
 	players.forEach( (player, i) => {
 
 		player.position = {
-			x: i / 5,
+			x: i,
 			y: 0,
-			z: ( ( i % 2 ) * 0.5 ) + 0.25
+			z: ( ( i % 2 ) * (params.TRACK_WIDTH / 3) ) + (params.TRACK_WIDTH / 3)
 		}
 
 	})
@@ -115,7 +107,7 @@ function startGame() {
 	// create game object
 
 	const initTime = Date.now();
-	const departureTime = initTime + LAPS_BEFORE_DEPARTURE;
+	const departureTime = initTime + params.LAPS_BEFORE_DEPARTURE;
 
 	const gameID = ( Math.random() * 10000000 ).toFixed(0);
 

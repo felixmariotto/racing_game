@@ -9,10 +9,7 @@ CODE FOR TILES :
 
 */
 
-//
-
-const TRACK_LENGTH = 100;
-const MINIMAL_EMPTY_SPACE = 12;
+const params = require('./params.js');
 
 //
 
@@ -54,9 +51,9 @@ module.exports = function buildMap() {
 	let additionalSpace = Math.floor( Math.random() * 5 );
 	let track = [];
 
-	for ( let i=0 ; i<TRACK_LENGTH ; i++ ) {
+	for ( let i=0 ; i<params.TRACK_LENGTH ; i++ ) {
 
-		if ( emptyCounter < ( MINIMAL_EMPTY_SPACE + additionalSpace ) ) {
+		if ( emptyCounter < ( params.MINIMAL_EMPTY_SPACE + additionalSpace ) ) {
 
 			emptyCounter ++;
 
