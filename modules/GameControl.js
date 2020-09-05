@@ -138,9 +138,6 @@ function startGame() {
 			z:0
 		}
 
-		player.throttle = 0; // factor in the [ 0, 1 ] range
-		player.roll = 0; // factor in the [ -1, 1 ] range
-
 	})
 
 	// create game object

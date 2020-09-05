@@ -47,22 +47,15 @@ module.exports = function updateGame( game, speedRatio ) {
 
 				if ( player.throttling ) {
 
-					player.throttle += params.ACCELERATION * speedRatio;
+					player.velocity.x += params.ACCELERATION * speedRatio;
 
-					player.throttle = Math.min( 1, player.throttle );
-
-					player.velocity.x = easing.easeInQuad( player.throttle ) * params.FORWARD_MAX_SPEED;
-
-					// for test
-					if ( !player.isNPC ) player.velocity.x *= 1.1;
+					player.velocity.x = Math.min( player.isNPC ? params.FORWARD_MAX_SPEED : params.FORWARD_MAX_SPEED * 1.1 , player.velocity.x );
 
 				} else {
 
-					player.throttle -= params.DECELERATION * speedRatio;
+					player.velocity.x -= params.DECELERATION * speedRatio;
 
-					player.throttle = Math.max( 0, player.throttle );
-
-					player.velocity.x = easing.easeInQuad( player.throttle ) * params.FORWARD_MAX_SPEED;
+					player.velocity.x = Math.max( 0, player.velocity.x );
 
 				}
 
@@ -70,19 +63,19 @@ module.exports = function updateGame( game, speedRatio ) {
 
 				if ( player.movingUp ) {
 
-					player.roll -= params.ROLL_SPEED * speedRatio;
+					player.velocity.z -= params.ROLL_SPEED * speedRatio;
 
 				} else if ( player.movingDown ) {
 
-					player.roll += params.ROLL_SPEED * speedRatio;
+					player.velocity.z += params.ROLL_SPEED * speedRatio;
 
 				} else {
 
-					player.roll -= player.roll * ( params.DRIFT_FACTOR* speedRatio );
+					player.velocity.z -= player.velocity.z * ( params.DRIFT_FACTOR * speedRatio );
 
 				}
 
-				player.velocity.z = player.roll * params.SIDE_MAX_SPEED
+				player.velocity.z = Math.max( -1 * params.SIDE_MAX_SPEED, Math.min( player.velocity.z, params.SIDE_MAX_SPEED ) )
 
 			})
 

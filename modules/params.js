@@ -8,10 +8,10 @@ module.exports = {
 	TRACK_LENGTH: 500, // in tiles
 	TRACK_WIDTH: 3, // in tiles
 	MINIMAL_EMPTY_SPACE: 12, // in tiles
-	FORWARD_MAX_SPEED: 0.08, // in world unit per simulation step
-	SIDE_MAX_SPEED: 0.05, // in world unit per simulation step
-	ACCELERATION: 0.0035, // added to the range [ 0, 1 ] each simulation step
-	DECELERATION: 0.002, // subtracted from the range [ 0, 1 ] each simulation step
-	ROLL_SPEED: 0.02, // added or subtracted from the roll factor in range [ -1, 1 ]
+	FORWARD_MAX_SPEED: 0.07, // in world unit per simulation step
+	SIDE_MAX_SPEED: 0.04, // in world unit per simulation step
+	ACCELERATION: 0.0004,
+	DECELERATION: 0.0006,
+	ROLL_SPEED: 0.001,
 	DRIFT_FACTOR: 0.05 // represent the automatic roll straightening
 }
