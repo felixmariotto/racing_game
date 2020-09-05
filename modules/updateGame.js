@@ -1,5 +1,6 @@
 
 const params = require('./params.js');
+const easing = require('./easing.js');
 
 //
 
@@ -11,13 +12,21 @@ module.exports = function updateGame( game, speedRatio ) {
 
 			game.players.forEach( (player) => {
 
-				if ( player.throttle ) {
+				if ( player.throttling ) {
 
-					player.forwardSpeed += ( params.FORWARD_SPEED - player.forwardSpeed ) * (0.01 * speedRatio);
+					player.throttle += params.ACCELERATION * speedRatio;
+
+					player.throttle = Math.min( 1, player.throttle );
+
+					player.forwardSpeed = easing.easeOutQuad( player.throttle ) * params.FORWARD_MAX_SPEED;
 
 				} else {
 
-					player.forwardSpeed += ( 0 - player.forwardSpeed ) * (0.01 * speedRatio);
+					player.throttle -= params.DECELERATION * speedRatio;
+
+					player.throttle = Math.max( 0, player.throttle );
+
+					player.forwardSpeed = easing.easeInOutQuad( player.throttle ) * params.FORWARD_MAX_SPEED;
 
 				}
 
@@ -27,13 +36,13 @@ module.exports = function updateGame( game, speedRatio ) {
 
 				if ( player.movingUp ) {
 
-					player.position.z -= params.SIDE_SPEED * speedRatio;
+					player.position.z -= params.SIDE_MAX_SPEED * speedRatio;
 
 				}
 
 				if ( player.movingDown ) {
 
-					player.position.z += params.SIDE_SPEED * speedRatio;
+					player.position.z += params.SIDE_MAX_SPEED * speedRatio;
 
 				}
 

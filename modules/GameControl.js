@@ -132,6 +132,7 @@ function startGame() {
 			z: ( ( i % 2 ) * (params.TRACK_WIDTH / 3) ) + (params.TRACK_WIDTH / 3)
 		}
 
+		player.throttle = 0; // factor in the [ 0, 1 ] range
 		player.forwardSpeed = 0;
 
 		player.sideSpeed = 0;
@@ -264,9 +265,9 @@ function stopMovePlayerUp( client ) { movePlayer( client, 'movingUp', false ) }
 
 function stopMovePlayerDown( client ) { movePlayer( client, 'movingDown', false ) }
 
-function throttlePlayerUp( client ) { movePlayer( client, 'throttle', true ) }
+function throttlePlayerUp( client ) { movePlayer( client, 'throttling', true ) }
 
-function throttlePlayerDown( client ) { movePlayer( client, 'throttle', false ) }
+function throttlePlayerDown( client ) { movePlayer( client, 'throttling', false ) }
 
 //
 
