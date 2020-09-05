@@ -20,7 +20,7 @@ module.exports = function updateGame( game, speedRatio ) {
 
 					player.throttle = Math.min( 1, player.throttle );
 
-					player.forwardSpeed = easing.easeOutQuad( player.throttle ) * params.FORWARD_MAX_SPEED;
+					player.forwardSpeed = easing.easeInQuad( player.throttle ) * params.FORWARD_MAX_SPEED;
 
 				} else {
 
@@ -28,7 +28,7 @@ module.exports = function updateGame( game, speedRatio ) {
 
 					player.throttle = Math.max( 0, player.throttle );
 
-					player.forwardSpeed = easing.easeInOutQuad( player.throttle ) * params.FORWARD_MAX_SPEED;
+					player.forwardSpeed = easing.easeInQuad( player.throttle ) * params.FORWARD_MAX_SPEED;
 
 				}
 
