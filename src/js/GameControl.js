@@ -1,12 +1,17 @@
 
 import GameMap from './GameMap.js';
 import Cars from './Cars.js';
+import UI from './UI.js';
 
 import Camera from './core/Camera.js';
 
 //
 
+let playerID;
+
 function startGame( params, thisPlayerID ) {
+
+	playerID = thisPlayerID;
 
 	console.log( thisPlayerID )
 
@@ -26,6 +31,8 @@ function startGame( params, thisPlayerID ) {
 
 function updateGame( stepInfo, thisPlayerID ) {
 
+	playerID = thisPlayerID;
+
 	const thisPlayer = stepInfo.players.find( (player) => {
 		return player.client && player.client === thisPlayerID
 	});
@@ -40,7 +47,22 @@ function updateGame( stepInfo, thisPlayerID ) {
 
 //
 
+function finishGame( info ) {
+
+	console.log( info );
+
+	const thisPlayerIndex = info.ranking.findIndex( (player) => {
+		return !player.isNPC && player.client === playerID
+	})
+
+	UI.showScore( info.ranking, thisPlayerIndex );
+
+}
+
+//
+
 export default {
 	startGame,
-	updateGame
+	updateGame,
+	finishGame
 }

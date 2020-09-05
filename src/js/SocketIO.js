@@ -25,7 +25,7 @@ socket.on( 'step-info', ( stepInfo ) => {
 
 socket.on( 'game-finished', ( info ) => {
 
-	console.log('finish info : ', info );
+	GameControl.finishGame( info );
 
 })
 
