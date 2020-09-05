@@ -6,10 +6,10 @@ import UI from './UI.js';
 
 //
 
-const socket = CLIENT.connect();
+// const socket = CLIENT.connect();
 
 // Good to test with webpack-dev-server :
-// const socket = CLIENT.connect("https://f-0-racing.herokuapp.com/");
+const socket = CLIENT.connect("https://f-0-racing.herokuapp.com/");
 
 socket.on( 'time-before-game', ( secBeforeGame ) => {
 
@@ -22,6 +22,12 @@ socket.on( 'step-info', ( stepInfo ) => {
 	GameControl.updateGame( stepInfo, socket.id );
 
 });
+
+socket.on( 'game-finished', ( info ) => {
+
+	console.log('finish info : ', info );
+
+})
 
 //
 

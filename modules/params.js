@@ -6,4 +6,6 @@ module.exports = {
 	TRACK_LENGTH: 100, // in tiles
 	TRACK_WIDTH: 5, // in tiles
 	MINIMAL_EMPTY_SPACE: 12, // in tiles
+	FORWARD_SPEED: 0.05,
+	SIDE_SPEED: 0.02
 }
