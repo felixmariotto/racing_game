@@ -2,6 +2,7 @@
 module.exports = {
 	SEC_BEFORE_START: 1, // server interval before new game
 	PLAYERS_NUMBER: 6,
+	PLAYER_BOUNDING_BOX: {x: 1, y: 0.5, z: 0.5}, // box dimension in world units
 	LAPS_BEFORE_DEPARTURE: 2000, // in ms
 	GAME_LOOP_FPS: 120,
 	TRACK_LENGTH: 500, // in tiles
