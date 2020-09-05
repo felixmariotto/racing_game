@@ -32,6 +32,18 @@ io.on( 'connection', (client) => {
 
 	console.log( `User ${ client.id } connected.` );
 
+	client.on( 'disconnect', () => {
+
+		console.log( `User ${ client.id } disconnected.` );
+
+		if ( client.game ) {
+
+			gameControl.removePlayer( client );
+
+		}
+
+	})
+
 	client.on( 'subscribe-next-game', () => {
 
 		gameControl.subscribeToNextGame( client );

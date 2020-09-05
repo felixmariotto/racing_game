@@ -44,6 +44,30 @@ function gameLoop( speedRatio ) {
 		updateGame( game, speedRatio )
 		.then( (stepInfo) => {
 
+			// check which players finished the track
+
+			game.players.forEach( (player) => {
+
+				if ( player.hasFinished ) return
+
+				if ( player.position.x > params.TRACK_LENGTH ) {
+
+					player.hasFinished = true;
+
+					game.ranking.push( player );
+
+					if ( game.ranking.length >= params.PLAYERS_NUMBER ) {
+
+						terminateGame( game.id );
+
+					}
+
+				}
+
+			})
+
+			// emit info to clients
+
 			io.to( game.id ).emit( 'step-info', stepInfo );
 
 		})
@@ -118,6 +142,7 @@ function startGame() {
 	const newGame = {
 		track: buildMap(),
 		id: gameID,
+		ranking: [],
 		initTime,
 		departureTime,
 		players
@@ -140,6 +165,63 @@ function startGame() {
 function subscribeToNextGame( client ) {
 
 	waitingClients.push( client );
+
+}
+
+//
+
+function terminateGame( gameID ) {
+
+	const game = ongoingGames[ gameID ];
+
+	console.log( 'terminate game ', gameID );
+
+	// broadcast finish event and ranking
+
+	io
+	.to( gameID )
+	.emit( 'game-finished', {
+		ranking: game.ranking
+	})
+
+	// unsubscribe players from this game
+
+	game.players.forEach( (player) => {
+
+		if ( !player.isNPC ) {
+
+			io.sockets.sockets[ player.client ].game = undefined;
+
+		}
+
+	})
+
+	// delete game from the ongoingGames object
+
+	delete ongoingGames[ gameID ]
+
+}
+
+//
+
+function removePlayer( client ) {
+
+	const players = ongoingGames[ client.game ].players;
+
+	const playerIndex = players.findIndex( (player) => {
+		return !player.isNPC && player.client === client.id
+	})
+
+	players.splice( playerIndex, 1 );
+
+	// check if there is still a non-NPC player in this game,
+	// if not, then terminate the game
+
+	if ( players.find( (player) => !player.isNPC ) === undefined ) {
+
+		terminateGame( client.game );
+
+	}
 
 }
 
@@ -181,5 +263,6 @@ module.exports = {
 	movePlayerUp,
 	movePlayerDown,
 	stopMovePlayerUp,
-	stopMovePlayerDown
+	stopMovePlayerDown,
+	removePlayer
 }
