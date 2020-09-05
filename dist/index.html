@@ -51,4 +51,85 @@
 
             #start-btn:hover {
               background-color: #b0faff;
-            }</style></head><body><div id="homescreen"><h1>Racing Game</h1><div id="homescreen-menu"><div id="start-btn">Start a game</div><div id="feedback-box"></div></div><h2 id="time-left">Time before new game : 3 seconds</h2><div><script src="bundle.js"></script></div></div></body></html>
+            }
+
+      /* SCORE SCREEN */
+
+      #score-screen {
+        background-color: white;
+        height: 70%;
+        width: 70%;
+        max-width: 70vh;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate( -50%, -50% );
+        border-radius: 30px;
+        background-color: rgba( 255, 255, 255, 0.2 );
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: auto;
+      }
+
+        #score-screen>* {
+          margin: 30px 0;
+        }
+
+        #score-continue-btn {
+          color: white;
+          padding: 10px 20px;
+          background-color: black;
+        }
+
+          #score-continue-btn:hover {
+            cursor: pointer;
+            background-color: grey;
+          }
+
+        #score-screen ul {
+          position: relative;
+          width: 90%;
+          background-color: blue;
+        }
+
+          #score-screen li {
+            width: 100%;
+            height: 30px;
+            background-color: white;
+            display: flex;
+          }
+
+            #score-screen li.this-player {
+              animation-name: this_player_score_blink;
+              animation-duration: 1s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+            }
+
+              @keyframes this_player_score_blink {
+                from { background-color: #e0e0e0; }
+                50% { background-color: #fafafa; }
+                to { background-color: #e0e0e0; }
+              }
+
+            #score-screen li * {
+              border-left: solid 1px black;
+              border-right: solid 1px black;
+              box-sizing: border-box;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+
+            #score-screen li .rank {
+              width: 10%;
+            }
+
+            #score-screen li .name {
+              width: 60%;
+            }
+
+            #score-screen li .score {
+              width: 30%;
+            }</style></head><body><div id="homescreen"><h1>Racing Game</h1><div id="homescreen-menu"><div id="start-btn">Start a game</div><div id="feedback-box"></div></div><h2 id="time-left">Time before new game : 3 seconds</h2></div><div id="score-screen"><h1>Score</h1><ul id="score-list"><li><div class="rank">rank</div><div class="name">name</div><div class="score">score</div></li><li class="this-player"><div class="rank">1</div><div class="name">Gerard</div><div class="score">1 : 20 : 35</div></li><li><div class="rank">1</div><div class="name">Gerard</div><div class="score">1 : 20 : 35</div></li><li><div class="rank">1</div><div class="name">Gerard</div><div class="score">1 : 20 : 35</div></li></ul><div id="score-continue-btn">Continue</div></div><script src="bundle.js"></script></body></html>
