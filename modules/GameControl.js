@@ -15,7 +15,7 @@ function takeSocketInScope( socketObject ) {
 
 let waitingClients = [];
 
-const ongoingGames = [];
+const ongoingGames = {};
 
 //
 
@@ -37,7 +37,9 @@ setInterval( () => {
 
 function gameLoop( speedRatio ) {
 
-	ongoingGames.forEach( (game) => {
+	for ( let gameID of Object.keys( ongoingGames ) ) {
+
+		const game = ongoingGames[ gameID ];
 
 		updateGame( game, speedRatio )
 		.then( (stepInfo) => {
@@ -46,13 +48,15 @@ function gameLoop( speedRatio ) {
 
 		})
 
-	})
+	}
 
 };
 
 //
 
 function startGame() {
+
+	const gameID = ( Math.random() * 10000000 ).toFixed(0);
 
 	const clients = waitingClients.slice( 0 );
 
@@ -69,6 +73,8 @@ function startGame() {
 			id: i,
 			client: client.id
 		});
+
+		client.game = gameID;
 
 	})
 
@@ -109,8 +115,6 @@ function startGame() {
 	const initTime = Date.now();
 	const departureTime = initTime + params.LAPS_BEFORE_DEPARTURE;
 
-	const gameID = ( Math.random() * 10000000 ).toFixed(0);
-
 	const newGame = {
 		track: buildMap(),
 		id: gameID,
@@ -119,7 +123,7 @@ function startGame() {
 		players
 	}
 
-	ongoingGames.push( newGame );
+	ongoingGames[ gameID ] = newGame;
 
 	// subscribe playing clients to a new room
 
@@ -139,10 +143,43 @@ function subscribeToNextGame( client ) {
 
 }
 
+/*
+called when on user input,
+set a variable in game.players[ player ] object,
+when will be looked up for when computing player position
+in the game loop
+*/
+
+function movePlayer( client, attribute, bool ) {
+
+	const game = ongoingGames[ client.game ];
+
+	if ( !game ) return
+
+	const gamePlayer = game.players.find( player => player.client && player.client === client.id )
+
+	gamePlayer[ attribute ] = bool;
+
+}
+
+//
+
+function movePlayerUp( client ) { movePlayer( client, 'movingUp', true ) }
+
+function movePlayerDown( client ) { movePlayer( client, 'movingDown', true ) }
+
+function stopMovePlayerUp( client ) { movePlayer( client, 'movingUp', false ) }
+
+function stopMovePlayerDown( client ) { movePlayer( client, 'movingDown', false ) }
+
 //
 
 module.exports = {
 	startGame,
 	subscribeToNextGame,
-	takeSocketInScope
+	takeSocketInScope,
+	movePlayerUp,
+	movePlayerDown,
+	stopMovePlayerUp,
+	stopMovePlayerDown
 }

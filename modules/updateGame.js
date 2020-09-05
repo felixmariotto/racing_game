@@ -1,4 +1,10 @@
 
+const FORWARD_SPEED = 0.02;
+
+const SIDE_SPEED = 0.01;
+
+//
+
 module.exports = function updateGame( game, speedRatio ) {
 
 	return new Promise( (resolve) => {
@@ -9,7 +15,21 @@ module.exports = function updateGame( game, speedRatio ) {
 
 			game.players.forEach( (player) => {
 
-				player.position.x += 0.005 * speedRatio;
+				player.position.x += FORWARD_SPEED * speedRatio;
+
+				// move up and down according to attributes set in GameControl.js
+
+				if ( player.movingUp ) {
+
+					player.position.z -= SIDE_SPEED * speedRatio;
+
+				}
+
+				if ( player.movingDown ) {
+
+					player.position.z += 0.002 * speedRatio;
+
+				}
 
 			})
 

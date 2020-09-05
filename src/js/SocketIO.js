@@ -6,10 +6,10 @@ import UI from './UI.js';
 
 //
 
-// const socket = CLIENT.connect();
+const socket = CLIENT.connect();
 
 // Good to test with webpack-dev-server :
-const socket = CLIENT.connect("https://f-0-racing.herokuapp.com/");
+// const socket = CLIENT.connect("https://f-0-racing.herokuapp.com/");
 
 socket.on( 'time-before-game', ( secBeforeGame ) => {
 
@@ -22,6 +22,16 @@ socket.on( 'step-info', ( stepInfo ) => {
 	GameControl.updateGame( stepInfo, socket.id );
 
 });
+
+//
+
+function sendMoveUp() { socket.emit('move-up') }
+
+function sendMoveDown() { socket.emit('move-down') }
+
+function sendStopMoveUp() { socket.emit('stop-move-up') }
+
+function sendStopMoveDown() { socket.emit('stop-move-down') }
 
 //
 
@@ -46,5 +56,9 @@ function subscribeNextGame() {
 }
 
 export default {
-	subscribeNextGame
+	subscribeNextGame,
+	sendMoveUp,
+	sendMoveDown,
+	sendStopMoveUp,
+	sendStopMoveDown
 }

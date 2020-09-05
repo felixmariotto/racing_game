@@ -38,6 +38,30 @@ io.on( 'connection', (client) => {
 
 	})
 
+	client.on( 'move-up', () => {
+
+		gameControl.movePlayerUp( client );
+
+	})
+
+	client.on( 'move-down', () => {
+
+		gameControl.movePlayerDown( client );
+
+	})
+
+	client.on( 'stop-move-up', () => {
+
+		gameControl.stopMovePlayerUp( client );
+
+	})
+
+	client.on( 'stop-move-down', () => {
+
+		gameControl.stopMovePlayerDown( client );
+
+	})
+
 })
 
 gameControl.takeSocketInScope( io );
