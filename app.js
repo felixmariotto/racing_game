@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const socketIO = require('socket.io');
 
+const params = require('./modules/params.js');
 const gameControl = require('./modules/GameControl.js');
 
 // EXPRESS
@@ -122,7 +123,6 @@ function startGame() {
 
 }
 
-const SEC_BEFORE_START = 3;
 let startCounter = 0;
 
 startGame();
@@ -131,7 +131,7 @@ setInterval( () => {
 
 	startCounter ++
 
-	if ( startCounter >= SEC_BEFORE_START ) {
+	if ( startCounter >= params.SEC_BEFORE_START ) {
 
 		startGame();
 
@@ -139,7 +139,7 @@ setInterval( () => {
 
 	} else {
 
-		sendTimeBeforeGame( SEC_BEFORE_START - startCounter )
+		sendTimeBeforeGame( params.SEC_BEFORE_START - startCounter )
 		
 	}
 

@@ -12,6 +12,8 @@ module.exports = function updateGame( game, speedRatio ) {
 
 			game.players.forEach( (player) => {
 
+				// FORWARD MOVE
+
 				if ( player.throttling ) {
 
 					player.throttle += params.ACCELERATION * speedRatio;
@@ -32,19 +34,23 @@ module.exports = function updateGame( game, speedRatio ) {
 
 				player.position.x += player.forwardSpeed * speedRatio;
 
-				// move up and down according to attributes set in GameControl.js
+				// SIDE MOVE
 
 				if ( player.movingUp ) {
 
-					player.position.z -= params.SIDE_MAX_SPEED * speedRatio;
+					player.roll -= params.ROLL_SPEED * speedRatio;
+
+				} else if ( player.movingDown ) {
+
+					player.roll += params.ROLL_SPEED * speedRatio;
+
+				} else {
+
+					player.roll -= player.roll * ( params.DRIFT_FACTOR* speedRatio );
 
 				}
 
-				if ( player.movingDown ) {
-
-					player.position.z += params.SIDE_MAX_SPEED * speedRatio;
-
-				}
+				player.position.z += player.roll * params.SIDE_MAX_SPEED;
 
 			})
 

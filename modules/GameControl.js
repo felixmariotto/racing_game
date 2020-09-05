@@ -135,6 +135,7 @@ function startGame() {
 		player.throttle = 0; // factor in the [ 0, 1 ] range
 		player.forwardSpeed = 0;
 
+		player.roll = 0; // factor in the [ -1, 1 ] range
 		player.sideSpeed = 0;
 
 	})
