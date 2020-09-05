@@ -6,6 +6,9 @@ import defaults from '../../data/defaults.js';
 
 //
 
+const targetPos = new THREE.Vector3().copy( defaults.cameraInitPos );
+const target = new THREE.Vector3().copy( defaults.cameraInitTarget );
+
 const camera = new THREE.PerspectiveCamera(
 	defaults.cameraFOV,
 	window.innerWidth/window.innerHeight,
@@ -54,7 +57,22 @@ function update() {
 
 		controls.update();
 
+	} else {
+
+		camera.position.copy( targetPos );
+		camera.lookAt( target );
+
 	}
+
+}
+
+function setCameraTargetPos( playerPos ) {
+
+	targetPos.x = playerPos.x - 1;
+	targetPos.y = playerPos.y + 1;
+	targetPos.z = playerPos.z + 4;
+
+	target.copy( playerPos );
 
 }
 
@@ -63,5 +81,6 @@ function update() {
 export default {
 	threeCamera: camera,
 	updateAspect,
-	update
+	update,
+	setCameraTargetPos
 }
