@@ -122,6 +122,12 @@ module.exports = function updateGame( game, speedRatio ) {
 						thisPlayer.position.x += relativeVelocity.x;
 						thisPlayer.position.z += relativeVelocity.z;
 
+						thisPlayer.velocity.x += relativeVelocity.x;
+						thisPlayer.velocity.z += relativeVelocity.z;
+
+						targetPlayer.velocity.x -= relativeVelocity.x;
+						targetPlayer.velocity.z -= relativeVelocity.z;
+
 					};
 
 				})
