@@ -122,11 +122,18 @@ module.exports = function updateGame( game, speedRatio ) {
 						thisPlayer.position.x += relativeVelocity.x;
 						thisPlayer.position.z += relativeVelocity.z;
 
-						thisPlayer.velocity.x += relativeVelocity.x;
-						thisPlayer.velocity.z += relativeVelocity.z;
+						// apply differential velocity on both colliding objects
+						
+						// this factor is 1 when the two colliding objects are as far as can be, and 0 when on the same axis
 
-						targetPlayer.velocity.x -= relativeVelocity.x;
-						targetPlayer.velocity.z -= relativeVelocity.z;
+						const xFactor = Math.abs( thisPlayer.position.x - targetPlayer.position.x ) / params.PLAYER_BOUNDING_BOX.x;
+						const zFactor = Math.abs( thisPlayer.position.z - targetPlayer.position.z ) / params.PLAYER_BOUNDING_BOX.z;
+
+						thisPlayer.velocity.x += relativeVelocity.x * xFactor;
+						thisPlayer.velocity.z += relativeVelocity.z * zFactor;
+
+						targetPlayer.velocity.x -= relativeVelocity.x * xFactor;
+						targetPlayer.velocity.z -= relativeVelocity.z * zFactor;
 
 					};
 
