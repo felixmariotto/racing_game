@@ -16,12 +16,7 @@ const domScoreContinue = document.querySelector('#score-continue-btn');
 
 domStartButton.onclick = () => {
 
-	SocketIO.subscribeNextGame()
-	.then( () => {
-
-		domFeedback.innerHTML = 'a game is starting...'
-
-	})
+	SocketIO.subscribeNextGame();
 
 	domFeedback.innerHTML = 'waiting for a game to start'
 
