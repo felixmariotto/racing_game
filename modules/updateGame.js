@@ -27,7 +27,7 @@ module.exports = function updateGame( game, speedRatio ) {
 
 				if ( player.movingDown ) {
 
-					player.position.z += 0.002 * speedRatio;
+					player.position.z += SIDE_SPEED * speedRatio;
 
 				}
 
