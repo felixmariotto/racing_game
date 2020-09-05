@@ -3,9 +3,9 @@ module.exports = {
 	PLAYERS_NUMBER: 6,
 	LAPS_BEFORE_DEPARTURE: 2000, // in ms
 	GAME_LOOP_FPS: 120,
-	TRACK_LENGTH: 20, // in tiles
+	TRACK_LENGTH: 100, // in tiles
 	TRACK_WIDTH: 5, // in tiles
 	MINIMAL_EMPTY_SPACE: 12, // in tiles
-	FORWARD_SPEED: 0.05,
-	SIDE_SPEED: 0.02
+	FORWARD_SPEED: 0.08,
+	SIDE_SPEED: 0.05
 }

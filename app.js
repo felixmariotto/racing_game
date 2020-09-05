@@ -52,19 +52,19 @@ io.on( 'connection', (client) => {
 
 	client.on( 'throttle-up', () => {
 
-		console.log('throttle-up')
+		gameControl.throttlePlayerUp( client );
 
 	})
 
 	client.on( 'throttle-down', () => {
 
-		console.log('throttle-down')
+		gameControl.throttlePlayerDown( client );
 
 	})
 
 	client.on( 'request-boost', () => {
 
-		console.log('request-boost')
+		console.log('boost');
 
 	})
 

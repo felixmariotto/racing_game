@@ -7,13 +7,21 @@ module.exports = function updateGame( game, speedRatio ) {
 
 	return new Promise( (resolve) => {
 
-		// test : make every player move forward
-
 		if ( Date.now() > game.departureTime ) {
 
 			game.players.forEach( (player) => {
 
-				player.position.x += params.FORWARD_SPEED * speedRatio;
+				if ( player.throttle ) {
+
+					player.forwardSpeed += ( params.FORWARD_SPEED - player.forwardSpeed ) * (0.01 * speedRatio);
+
+				} else {
+
+					player.forwardSpeed += ( 0 - player.forwardSpeed ) * (0.01 * speedRatio);
+
+				}
+
+				player.position.x += player.forwardSpeed * speedRatio;
 
 				// move up and down according to attributes set in GameControl.js
 

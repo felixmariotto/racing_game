@@ -132,6 +132,10 @@ function startGame() {
 			z: ( ( i % 2 ) * (params.TRACK_WIDTH / 3) ) + (params.TRACK_WIDTH / 3)
 		}
 
+		player.forwardSpeed = 0;
+
+		player.sideSpeed = 0;
+
 	})
 
 	// create game object
@@ -260,12 +264,18 @@ function stopMovePlayerUp( client ) { movePlayer( client, 'movingUp', false ) }
 
 function stopMovePlayerDown( client ) { movePlayer( client, 'movingDown', false ) }
 
+function throttlePlayerUp( client ) { movePlayer( client, 'throttle', true ) }
+
+function throttlePlayerDown( client ) { movePlayer( client, 'throttle', false ) }
+
 //
 
 module.exports = {
 	startGame,
 	subscribeToNextGame,
 	takeSocketInScope,
+	throttlePlayerUp,
+	throttlePlayerDown,
 	movePlayerUp,
 	movePlayerDown,
 	stopMovePlayerUp,
