@@ -132,11 +132,14 @@ function startGame() {
 			z: ( ( i % 2 ) * (params.TRACK_WIDTH / 3) ) + (params.TRACK_WIDTH / 3)
 		}
 
-		player.throttle = 0; // factor in the [ 0, 1 ] range
-		player.forwardSpeed = 0;
+		player.velocity = {
+			x: 0,
+			y: 0,
+			z:0
+		}
 
+		player.throttle = 0; // factor in the [ 0, 1 ] range
 		player.roll = 0; // factor in the [ -1, 1 ] range
-		player.sideSpeed = 0;
 
 	})
 

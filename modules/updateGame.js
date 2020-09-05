@@ -20,7 +20,7 @@ module.exports = function updateGame( game, speedRatio ) {
 
 					player.throttle = Math.min( 1, player.throttle );
 
-					player.forwardSpeed = easing.easeInQuad( player.throttle ) * params.FORWARD_MAX_SPEED;
+					player.velocity.x = easing.easeInQuad( player.throttle ) * params.FORWARD_MAX_SPEED;
 
 				} else {
 
@@ -28,11 +28,9 @@ module.exports = function updateGame( game, speedRatio ) {
 
 					player.throttle = Math.max( 0, player.throttle );
 
-					player.forwardSpeed = easing.easeInQuad( player.throttle ) * params.FORWARD_MAX_SPEED;
+					player.velocity.x = easing.easeInQuad( player.throttle ) * params.FORWARD_MAX_SPEED;
 
 				}
-
-				player.position.x += player.forwardSpeed * speedRatio;
 
 				// SIDE MOVE
 
@@ -50,7 +48,12 @@ module.exports = function updateGame( game, speedRatio ) {
 
 				}
 
-				player.position.z += player.roll * params.SIDE_MAX_SPEED;
+				player.velocity.z = player.roll * params.SIDE_MAX_SPEED
+
+				// apply player velocity on their position
+
+				player.position.x += player.velocity.x;
+				player.position.z += player.velocity.z;
 
 			})
 

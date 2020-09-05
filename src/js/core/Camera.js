@@ -68,11 +68,13 @@ function update() {
 
 function setCameraTargetPos( playerPos ) {
 
-	targetPos.x = playerPos.x - 1;
-	targetPos.y = playerPos.y + 1;
-	targetPos.z = playerPos.z + 4;
+	targetPos.x = playerPos.x;
+	targetPos.y = playerPos.y + 2;
+	targetPos.z = playerPos.z + 3;
 
-	target.copy( playerPos );
+	target.x = playerPos.x + 1;
+	target.y = playerPos.y;
+	target.z = playerPos.z;
 
 }
 
