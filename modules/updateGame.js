@@ -90,19 +90,19 @@ module.exports = function updateGame( game, speedRatio ) {
 			// COLLISION
 			//////////////
 
-			game.players.forEach( (player, thisPlayerIdx) => {
+			game.players.forEach( (thisPlayer, thisPlayerIdx) => {
 
 				// apply player velocity on their position
 
-				player.position.x += player.velocity.x;
-				player.position.z += player.velocity.z;
+				thisPlayer.position.x += thisPlayer.velocity.x;
+				thisPlayer.position.z += thisPlayer.velocity.z;
 
 				// collide this player against all other players,
 				// and update their position out of collision,
 				// while updating their velocity
 
-				const thisPlayerMin = getPlayerMin( player, vec1 );
-				const thisPlayerMax = getPlayerMax( player, vec2 );
+				const thisPlayerMin = getPlayerMin( thisPlayer, vec1 );
+				const thisPlayerMax = getPlayerMax( thisPlayer, vec2 );
 
 				game.players.forEach( (targetPlayer, targetPlayerIdx) => {
 
@@ -111,6 +111,7 @@ module.exports = function updateGame( game, speedRatio ) {
 					const targetPlayerMin = getPlayerMin( targetPlayer, vec3 );
 					const targetPlayerMax = getPlayerMax( targetPlayer, vec4 );
 
+					// AABB collision detection
 					if (
 						!( 
 							thisPlayerMin.x > targetPlayerMax.x ||
@@ -120,7 +121,13 @@ module.exports = function updateGame( game, speedRatio ) {
 						)
 					) {
 
-						console.log('collision')
+						const relativeVelocity = {
+							x: targetPlayer.velocity.x - thisPlayer.velocity.x,
+							z: targetPlayer.velocity.z - thisPlayer.velocity.z
+						};
+
+						thisPlayer.position.x += relativeVelocity.x;
+						thisPlayer.position.z += relativeVelocity.z;
 
 					};
 
