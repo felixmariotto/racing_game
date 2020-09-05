@@ -58,7 +58,22 @@ function positionCar( id, newPos ) {
 
 //
 
+function cleanup() {
+
+	for ( let carID of Object.keys( cars ) ) {
+
+		Scene.remove( cars[ carID ].mesh );
+
+		delete cars[ carID ];
+
+	}
+
+}
+
+//
+
 export default {
 	createNew,
-	update
+	update,
+	cleanup
 }

@@ -31,7 +31,9 @@ const TILE_UVS = [
 	// 2 : obstacle tile
 	[ 0, 1.0, 0.5, 1.0, 0, 0.5, 0.5, 0.5 ]
 
-]
+];
+
+let mapMesh;
 
 const material = new THREE.MeshLambertMaterial();
 
@@ -79,17 +81,26 @@ function createMap( params ) {
 
 	const mergedGeom = BufferGeometryUtils.mergeBufferGeometries( parsed );
 
-	const mesh = new THREE.Mesh(
+	mapMesh = new THREE.Mesh(
 		mergedGeom,
 		material
 	)
 
-	Scene.add( mesh )
+	Scene.add( mapMesh )
+
+}
+
+//
+
+function cleanup() {
+
+	Scene.remove( mapMesh );
 
 }
 
 //
 
 export default {
-	createMap
+	createMap,
+	cleanup
 }

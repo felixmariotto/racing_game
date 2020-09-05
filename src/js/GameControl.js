@@ -55,7 +55,15 @@ function finishGame( info ) {
 		return !player.isNPC && player.client === playerID
 	})
 
-	UI.showScore( info.ranking, thisPlayerIndex );
+	UI.showScore( info.ranking, thisPlayerIndex )
+	.then( () => {
+
+		// when 'continue' button is clicked, clean the scene up
+
+		GameMap.cleanup();
+		Cars.cleanup();
+
+	})
 
 }
 

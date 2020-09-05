@@ -13,7 +13,8 @@ updateBackground( defaults.sceneBackColor );
 export default {
 	threeScene: scene,
 	updateBackground,
-	add
+	add,
+	remove
 }
 
 //
@@ -41,3 +42,18 @@ function add() {
 	scene.add( ...arguments );
 
 };
+
+//
+
+function remove( object ) {
+
+	object.traverse( (child) => {
+
+		if ( child.geometry ) child.geometry.dispose();
+		if ( child.material ) child.material.dispose();
+
+		child.parent.remove( child );
+
+	})
+
+}

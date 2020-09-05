@@ -7,8 +7,10 @@ const domHomescreen = document.querySelector('#homescreen');
 const domStartButton = document.querySelector('#start-btn');
 const domFeedback = document.querySelector('#feedback-box');
 const domTimeLeft = document.querySelector('#time-left');
+
 const domScoreScreen = document.querySelector('#score-screen');
 const domScoreList = document.querySelector('#score-list');
+const domScoreContinue = document.querySelector('#score-continue-btn');
 
 //
 
@@ -45,39 +47,54 @@ function printTimeLeft( secBeforeGame ) {
 
 function showScore( ranking, thisPlayerIdx ) {
 
-	domScoreScreen.style.display = 'flex';
-	domScoreList.innerHTML = `<li>
-              
-        <div class="rank">rank</div>
+	return new Promise( (resolve) => {
 
-        <div class="name">name</div>
+		domScoreScreen.style.display = 'flex';
+		domScoreList.innerHTML = `<li>
+	              
+	        <div class="rank">rank</div>
 
-        <div class="score">score</div>
+	        <div class="name">name</div>
 
-    </li>`;
+	        <div class="score">score</div>
 
-	//
+	    </li>`;
 
-	ranking.forEach( (playerRank, i) => {
+		//
 
-		const li = document.createElement('LI');
+		ranking.forEach( (playerRank, i) => {
 
-		if ( thisPlayerIdx === i ) li.classList.add('this-player');
+			const li = document.createElement('LI');
 
-		const rank = document.createElement('DIV');
-		const name = document.createElement('DIV');
-		const score = document.createElement('DIV');
+			if ( thisPlayerIdx === i ) li.classList.add('this-player');
 
-		rank.classList.add('rank');
-		name.classList.add('name');
-		score.classList.add('score');
+			const rank = document.createElement('DIV');
+			const name = document.createElement('DIV');
+			const score = document.createElement('DIV');
 
-		rank.innerHTML = i + 1;
-		name.innerHTML = 'name';
-		score.innerHTML = '1 : 20 : 35';
+			rank.classList.add('rank');
+			name.classList.add('name');
+			score.classList.add('score');
 
-		li.append( rank, name, score );
-		domScoreList.append( li );
+			rank.innerHTML = i + 1;
+			name.innerHTML = 'name';
+			score.innerHTML = '1 : 20 : 35';
+
+			li.append( rank, name, score );
+			domScoreList.append( li );
+
+		})
+
+		//
+
+		domScoreContinue.onclick = () => {
+
+			domScoreScreen.style.display = 'none';
+			domHomescreen.style.display = 'flex';
+
+			resolve();
+
+		}
 
 	})
 
