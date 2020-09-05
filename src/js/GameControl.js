@@ -13,10 +13,6 @@ function startGame( params, thisPlayerID ) {
 
 	playerID = thisPlayerID;
 
-	console.log( thisPlayerID )
-
-	console.log( params )
-
 	params.players.forEach( (player) => {
 
 		Cars.createNew( player );
@@ -41,15 +37,11 @@ function updateGame( stepInfo, thisPlayerID ) {
 
 	Cars.update( stepInfo );
 
-	// console.log( thisPlayer )
-
 }
 
 //
 
 function finishGame( info ) {
-
-	console.log( info );
 
 	const thisPlayerIndex = info.ranking.findIndex( (player) => {
 		return !player.isNPC && player.client === playerID

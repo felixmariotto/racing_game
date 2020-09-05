@@ -50,6 +50,24 @@ io.on( 'connection', (client) => {
 
 	})
 
+	client.on( 'throttle-up', () => {
+
+		console.log('throttle-up')
+
+	})
+
+	client.on( 'throttle-down', () => {
+
+		console.log('throttle-down')
+
+	})
+
+	client.on( 'request-boost', () => {
+
+		console.log('request-boost')
+
+	})
+
 	client.on( 'move-up', () => {
 
 		gameControl.movePlayerUp( client );

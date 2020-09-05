@@ -47,6 +47,12 @@ function sendStopMoveUp() { socket.emit('stop-move-up') }
 
 function sendStopMoveDown() { socket.emit('stop-move-down') }
 
+function sendThrottleUp() { socket.emit('throttle-up') }
+
+function sendThrottleDown() { socket.emit('throttle-down') }
+
+function sendBoostRequest() { socket.emit('request-boost') }
+
 //
 
 function subscribeNextGame() {
@@ -60,5 +66,8 @@ export default {
 	sendMoveUp,
 	sendMoveDown,
 	sendStopMoveUp,
-	sendStopMoveDown
+	sendStopMoveDown,
+	sendThrottleUp,
+	sendThrottleDown,
+	sendBoostRequest
 }
