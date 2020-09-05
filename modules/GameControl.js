@@ -164,6 +164,12 @@ function startGame() {
 
 function subscribeToNextGame( client ) {
 
+	// check that the client is not already subscribed to a game
+
+	if ( waitingClients.indexOf( client ) > -1 || client.game !== undefined ) return
+
+	//
+
 	waitingClients.push( client );
 
 }
