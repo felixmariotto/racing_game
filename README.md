@@ -2,7 +2,7 @@
 
 this is inspired by [this GIF on Twitter](https://twitter.com/Clandestine_vox/status/1301133609068359680) and by my favourite game ever F-Zero GX.
 
-## This is a prototype, playable in multiplayer
+## This is a prototype, [playable in multiplayer here](https://f-0-racing.herokuapp.com/)
 
 ![gameplay](https://f-zero-racing.s3.eu-west-3.amazonaws.com/images/2020-09-06_110141.jpg)
 
