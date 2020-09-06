@@ -1,6 +1,6 @@
 # Racing Game
 
-this is inspired by this gif on Twitter : https://f-zero-racing.s3.eu-west-3.amazonaws.com/images/2020-09-06_110141.jpg and by the aesthetic of F-Zero
+this is inspired by this gif on Twitter : https://f-zero-racing.s3.eu-west-3.amazonaws.com/images/2020-09-06_110141.jpg and by my favourite game ever F-Zero GX.
 
 ## This is a prototype, playable in multiplayer
 
