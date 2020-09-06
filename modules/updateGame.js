@@ -90,6 +90,13 @@ module.exports = function updateGame( game, speedRatio ) {
 				thisPlayer.position.x += thisPlayer.velocity.x;
 				thisPlayer.position.z += thisPlayer.velocity.z;
 
+				// collide against walls
+
+				const playerWidth = params.PLAYER_BOUNDING_BOX.z;
+
+				if ( thisPlayer.position.z < 0 ) thisPlayer.position.z = 0;
+				if ( thisPlayer.position.z > params.TRACK_WIDTH - 1 + (playerWidth / 2) ) thisPlayer.position.z = params.TRACK_WIDTH - 1 + (playerWidth / 2);
+
 				// collide this player against all other players,
 				// and update their position out of collision,
 				// while updating their velocity
@@ -129,11 +136,19 @@ module.exports = function updateGame( game, speedRatio ) {
 						const xFactor = Math.abs( thisPlayer.position.x - targetPlayer.position.x ) / params.PLAYER_BOUNDING_BOX.x;
 						const zFactor = Math.abs( thisPlayer.position.z - targetPlayer.position.z ) / params.PLAYER_BOUNDING_BOX.z;
 
-						thisPlayer.velocity.x += relativeVelocity.x * xFactor;
-						thisPlayer.velocity.z += relativeVelocity.z * zFactor;
+						if ( zFactor > 0.9 ) {
 
-						targetPlayer.velocity.x -= relativeVelocity.x * xFactor;
-						targetPlayer.velocity.z -= relativeVelocity.z * zFactor;
+							thisPlayer.velocity.z += relativeVelocity.z * zFactor;
+							targetPlayer.velocity.z -= relativeVelocity.z * zFactor;
+
+						};
+
+						if ( xFactor > 0.9 ) {
+
+							thisPlayer.velocity.x += relativeVelocity.x * xFactor;
+							targetPlayer.velocity.x -= relativeVelocity.x * xFactor;
+
+						};
 
 					};
 
